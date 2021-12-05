@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard/SingleCard";
 
@@ -17,7 +17,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
-  //shuffle cards
+  //Shuffle cards
   function shuffleCards() {
     const shuffleCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
@@ -29,9 +29,29 @@ function App() {
 
   // console.log(cards, turns);
 
-  // hanle a choice
+  // Hanle a choice
   function handleChoice(card) {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  }
+
+  // Compare 2 selected cards
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log("Those two cards match!");
+        resetTurn(); //need to reset!
+      } else {
+        console.log("Those two cards do not match:(");
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo]);
+
+  // Reset Turns
+  function resetTurn() {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns((prevTurns) => prevTurns + 1);
   }
 
   return (
