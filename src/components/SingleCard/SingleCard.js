@@ -9,7 +9,7 @@ export default function SingleCard({ card, handleChoice }) {
   return (
     <div className="card">
       <div>
-        <img calssName="front" src={card.src} alt="card front" />
+        <img className="front" src={card.src} alt="card front" />
         <img
           className="back"
           src="/img/cover.jpg"
