@@ -77,7 +77,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Beverage Match</h1>
+      <h1>Refresh Match</h1>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
